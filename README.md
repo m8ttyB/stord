@@ -33,18 +33,25 @@ helm install sre-app ./sre-app \
   --values ./sre-app/values.yaml
 ```
 
+The chart includes a pre-install hook that runs database migrations before the application starts. To check migration status:
+```bash
+kubectl get jobs -n $NAMESPACE
+kubectl logs job/sre-app-migration -n $NAMESPACE
+```
+
 ## Validation
 ### Database
 ```bash
-kubectl port-forward svc/sre-db-postgresql 55432:5432
+kubectl port-forward svc/sre-db-postgresql 55432:5432 -n $NAMESPACE
 psql postgresql://postgres:password@127.0.0.1:55432/sre-technical-challenge
 ```
 ### App
 ```bash
-kubectl port-forward svc/sre-app 8080:80 -n stord
+kubectl port-forward svc/sre-app 8080:80 -n $NAMESPACE
 http http://localhost:8080
 ```
 ## Resources:
 - Kubernetes
   - [Managing secrets using kubectl](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
   - [Pod security context](https://kubernetes.io/docs/concepts/security/pod-security-context/)
+- [Helm Chart Hooks](https://helm.sh/docs/topics/charts_hooks/)
