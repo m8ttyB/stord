@@ -44,3 +44,7 @@ psql postgresql://postgres:password@127.0.0.1:55432/sre-technical-challenge
 kubectl port-forward svc/sre-app 8080:80 -n stord
 http http://localhost:8080
 ```
+## Resources:
+- Kubernetes
+  - [Managing secrets using kubectl](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
+  - [Pod security context](https://kubernetes.io/docs/concepts/security/pod-security-context/)
