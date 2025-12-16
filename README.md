@@ -55,4 +55,5 @@ http http://localhost:8080
   - [Managing secrets using kubectl](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
   - [Pod security context](https://kubernetes.io/docs/concepts/security/pod-security-context/)
   - [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+  - [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
 - [Helm Chart Hooks](https://helm.sh/docs/topics/charts_hooks/)
