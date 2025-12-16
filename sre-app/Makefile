@@ -13,7 +13,7 @@ setup:
 		--dry-run=client -o yaml | kubectl apply -f -
 	@echo "Secrets setup complete."
 
-install:
+install: setup
 	@echo "Installing sre-db..."
 	@helm install sre-db oci://registry-1.docker.io/bitnamicharts/postgresql \
 		--set auth.username=postgres \
