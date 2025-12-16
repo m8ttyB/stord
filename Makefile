@@ -1,4 +1,4 @@
-.PHONY: setup install cleanup
+.PHONY: setup deploy cleanup
 
 # Variables
 SECRET_NAME = sre-app-secrets
@@ -13,7 +13,7 @@ setup:
 		--dry-run=client -o yaml | kubectl apply -f -
 	@echo "Secrets setup complete."
 
-install: setup
+deploy: setup
 	@echo "Installing sre-db..."
 	@helm install sre-db oci://registry-1.docker.io/bitnamicharts/postgresql \
 		--set auth.username=postgres \
@@ -21,7 +21,7 @@ install: setup
 		--set auth.database=sre-technical-challenge \
 		--namespace=$(NAMESPACE)
 	@echo "Installing sre-app..."
-	@helm install sre-app . --namespace=$(NAMESPACE)
+	@helm install sre-app ./sre-app --namespace=$(NAMESPACE)
 	@echo "Installation complete."
 
 cleanup:
